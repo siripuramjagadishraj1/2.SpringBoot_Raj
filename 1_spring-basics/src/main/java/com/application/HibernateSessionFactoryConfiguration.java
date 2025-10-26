@@ -68,7 +68,7 @@ public class HibernateSessionFactoryConfiguration {
 	        new String[] { "com.jpa.db" });
 	      
 	      Properties properties = new Properties();
-			properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+			properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 			properties.setProperty("hibernate.hbm2ddl.auto", "create");
 			properties.setProperty("hibernate.show_sql", "true");
 			properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
@@ -77,8 +77,7 @@ public class HibernateSessionFactoryConfiguration {
 	      return sessionFactory;
 	   }
 	
-	  @Bean
-	   @Autowired
+	   @Bean
 	   public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 	      HibernateTransactionManager txManager = new HibernateTransactionManager();
 	      txManager.setSessionFactory(sessionFactory);

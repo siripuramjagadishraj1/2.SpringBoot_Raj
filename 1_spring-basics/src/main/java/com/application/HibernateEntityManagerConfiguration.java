@@ -2,7 +2,7 @@ package com.application;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
+//import javax.persistence.EntityManagerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariDataSource;
+
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableTransactionManagement //this is required with entityManager else will get error
@@ -49,7 +51,7 @@ public class HibernateEntityManagerConfiguration {
 		bean.setJpaVendorAdapter(new HibernateJpaVendorAdapter()); // Selecting an Implementation for JPA
 
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");

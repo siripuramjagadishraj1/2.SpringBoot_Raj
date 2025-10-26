@@ -1,15 +1,26 @@
 package com.beans;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+//import javax.annotation.PostConstruct;
+//import javax.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 public class Apple 
-					/*implements BeanNameAware,
-							  BeanFactoryAware, 
-							  BeanPostProcessor, 
-							  InitializingBean, 
-							  DisposableBean*/
+					/*implements BeanNameAware, //-->setBeanName
+							  BeanFactoryAware, //-->setBeanFactory
+							  BeanPostProcessor, //-->postProcessBeforeInitialization
+							  InitializingBean, //-->afterPropertiesSet
+							  DisposableBean //-->destroy
+					*/
 							  {
 	
 	@Value("${server.port}") private String testEnv;
@@ -60,8 +71,7 @@ public class Apple
 	public void customDestory() {
 		System.out.println("**********Apple.customDestory()");
 	}
-
-	/*
+/*
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("**********postConstruct"+this);
@@ -109,5 +119,4 @@ public class Apple
 		System.out.println("**********BeanNameAware : "+name);
 	}
 	*/
-	
 }

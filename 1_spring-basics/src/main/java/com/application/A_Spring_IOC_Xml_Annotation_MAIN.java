@@ -38,7 +38,7 @@ public class A_Spring_IOC_Xml_Annotation_MAIN {
 		JdbcTemplate template = (JdbcTemplate)ctx.getBean("jdbcTemplate");
 		List<Map<String, Object>> completeList = template.queryForList("select * from country");
 		completeList.forEach((item)->{
-			System.out.println(item);
+			log.info(item.toString());
 		});
 		
 		((ConfigurableApplicationContext)ctx).close();

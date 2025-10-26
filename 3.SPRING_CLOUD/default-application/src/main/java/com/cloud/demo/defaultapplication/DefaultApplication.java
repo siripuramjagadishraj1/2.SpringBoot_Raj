@@ -11,6 +11,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,9 @@ public class DefaultApplication {
 @RestController
 class ServiceInstanceRestController {
 	
+	@Autowired
+	private Environment env;
+	
 	private Logger log = LoggerFactory.getLogger(ServiceInstanceRestController.class);
 
 	@Autowired
@@ -42,6 +46,6 @@ class ServiceInstanceRestController {
 	
 	@RequestMapping("/hello")
 	public String hello() {
-		return "hello";
+		return "hello-->"+env.getProperty("server.port");
 	}
 }

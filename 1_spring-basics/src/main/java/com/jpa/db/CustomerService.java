@@ -1,11 +1,16 @@
 package com.jpa.db;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import jakarta.annotation.Resource;
+//import javax.persistence.EntityManager;
+//import javax.persistence.PersistenceContext;
+//import javax.transaction.Transactional;
+import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +27,8 @@ public class CustomerService {
 	}
 	
 	//-------------------------------------------------------------
-	
-	/*@Resource(name="sessionFactory")
+	/*
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;  //2. Hibernate with SessionFactory (Older way)
 	
 	@Transactional

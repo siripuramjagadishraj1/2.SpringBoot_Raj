@@ -20,11 +20,11 @@ public class B_Spring_Hibernate_Manual_MAIN {
 	public static Logger log= LoggerFactory.getLogger(B_Spring_Hibernate_Manual_MAIN.class);
 	
 	public static void main(String[] args) throws Exception{
-		//ApplicationContext ctx = new AnnotationConfigApplicationContext(HibernateSessionFactoryConfiguration.class);  //Hibernate Session (You have to make some changes. in CustomerService)
+//		ApplicationContext ctx = new AnnotationConfigApplicationContext(HibernateSessionFactoryConfiguration.class);  //Hibernate Session (You have to make some changes. in CustomerService)
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(HibernateEntityManagerConfiguration.class);     //Hibernate EntityManager
 		CustomerService service = (CustomerService) ctx.getBean("customerService");
-		//service.saveSpringTransaction();
-		//service.saveManualTransaction();
+//		service.saveSpringTransaction();
+//		service.saveManualTransaction();
 		service.persist();
 		((ConfigurableApplicationContext)ctx).close();
 	}
