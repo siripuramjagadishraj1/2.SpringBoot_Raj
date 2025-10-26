@@ -1,4 +1,6 @@
-Various types of Mapping:
+Hibernate:
+----------
+	Various types of Mapping:
 		1. Simple Mapping
 		2. Collection Mapping
 		3. Inheritance Mapping
@@ -27,3 +29,12 @@ Various types of Mapping:
 		b. JTA Transactions.
 		
 	Hibernate has Caching Mechanism
+
+REST API:
+--------
+	curl --location --request PUT 'localhost:5000/add/querryFromDB/querryPathVariable?param1=param1&param2=param2' \
+	--header 'Content-Type: application/json' \
+	--data '{
+	    "cost": 100,
+	    "name": "Apple"
+	}'

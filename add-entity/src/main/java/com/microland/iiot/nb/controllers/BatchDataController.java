@@ -34,7 +34,7 @@ public class BatchDataController {
 		System.out.println("RequestParam: "+jsonApple);
 		System.out.println("param1: "+ param1);
 		System.out.println("param2: "+ param2);
-		//service.persist();
+		service.entityInsertion();
 		System.out.println(service.findAllDemo());
 		return new DBEntity(100, "Test Apple");
 	}

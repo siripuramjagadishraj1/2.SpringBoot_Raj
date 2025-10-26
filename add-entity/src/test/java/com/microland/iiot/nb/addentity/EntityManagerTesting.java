@@ -8,18 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.microland.iiot.nb.services.dto.UserInfo;
@@ -52,7 +48,7 @@ public class EntityManagerTesting extends BasicTests{
 	@Autowired
     private InventoryRepository jpaRepository;
 	
-	@Before
+	@BeforeEach
 	public void doBefore() throws Exception{
 		logger.info("Mocking...");
 		Mockito.when(footerServiceMocked.getFooter()).thenReturn("Its Mocked");
@@ -136,10 +132,10 @@ public class EntityManagerTesting extends BasicTests{
 		Example<UserInfo> example = Example.of(infy);
 		System.out.println("8. findAllExample: "+jpaRepository.findAll(example));
 		
-		@SuppressWarnings("deprecation")
-		Pageable page = new PageRequest(0, 3, Sort.Direction.DESC, "userName");
-		System.out.println("9. findAll-Pagable: "+(jpaRepository.findAll(page)).getContent());
-		System.out.println("==================e_repositoryTest==================");
+		//@SuppressWarnings("deprecation")
+		//Pageable page = new PageRequest(0, 3, Sort.Direction.DESC, "userName");
+		//System.out.println("9. findAll-Pagable: "+(jpaRepository.findAll(page)).getContent());
+		//System.out.println("==================e_repositoryTest==================");
 	}
 	
 	

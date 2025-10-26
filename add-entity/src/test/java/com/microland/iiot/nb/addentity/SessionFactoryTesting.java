@@ -7,14 +7,13 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +23,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.microland.iiot.nb.services.dto.UserInfo;
@@ -31,7 +31,9 @@ import com.microland.iiot.nb.services.testServices.FooterService;
 import com.microland.iiot.nb.services.testServices.FooterServiceMocked;
 import com.zaxxer.hikari.HikariDataSource;
 
-@RunWith(SpringRunner.class)
+import jakarta.annotation.Resource;
+
+@ExtendWith(SpringExtension.class)
 @ComponentScan(basePackages= {"com.microland.iiot.nb.services"
 							 })
 //@Import(value= {com.microland.iiot.nb.configuration.HibernateSessionFactoryConfiguration.class})
@@ -56,7 +58,7 @@ public class SessionFactoryTesting {
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
-	@Before
+	@BeforeEach
 	public void doBefore() throws Exception{
 		Mockito.when(footerServiceMocked.getFooter()).thenReturn("Its Mocked");
 	}
@@ -71,7 +73,7 @@ public class SessionFactoryTesting {
 		//3. JDBC Database Connectivity.
 		Connection conn = datasource.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from users");
+		ResultSet rs = stmt.executeQuery("select * from userinfo");
 		while(rs.next()) {
 			System.out.println(rs.getObject(1));
 		}

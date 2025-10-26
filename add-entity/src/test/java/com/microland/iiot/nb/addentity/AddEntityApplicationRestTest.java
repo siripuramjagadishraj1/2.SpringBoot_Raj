@@ -7,10 +7,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,16 +20,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.microland.iiot.nb.AddEntityApplication;
 import com.microland.iiot.nb.services.dto.DBEntity;
 import com.microland.iiot.nb.services.testServices.FooterServiceMocked;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(
 		webEnvironment=WebEnvironment.RANDOM_PORT,
 		classes= {AddEntityApplication.class}
@@ -52,7 +53,7 @@ public class AddEntityApplicationRestTest {
 	@MockBean
 	private FooterServiceMocked footerService;
 	
-	@Before
+	@BeforeEach
 	public void doBefore() throws Exception{
 		Mockito.when(footerService.getFooter()).thenReturn("Its Mocked");
 	}
